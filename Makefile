@@ -6,8 +6,9 @@ SOURCE_FILES = Ex1_Precipitation.py
 
 # Convert single file to exercise notebook (remove solutions)
 exercise-%:
+	mkdir -p ready
 	jupytext --to ipynb -o $(basename $*)_temp.ipynb $*
-	jupyter nbconvert --to notebook --output $(basename $*).ipynb \
+	jupyter nbconvert --to notebook --output=ready/$(basename $*).ipynb \
 		--TagRemovePreprocessor.enabled=True \
 		--TagRemovePreprocessor.remove_cell_tags='["solution"]' \
 		$(basename $*)_temp.ipynb
@@ -15,8 +16,9 @@ exercise-%:
 
 # Convert single file to solution notebook (remove empty cells)
 solution-%:
+	mkdir -p ready
 	jupytext --to ipynb -o $(basename $*)_temp.ipynb $*
-	jupyter nbconvert --to notebook --output=$(basename $*)_solution.ipynb --execute \
+	jupyter nbconvert --to notebook --output=ready/$(basename $*)_solution.ipynb --execute \
 		--TagRemovePreprocessor.enabled=True \
 		--TagRemovePreprocessor.remove_cell_tags='["empty-cell"]' \
 		$(basename $*)_temp.ipynb

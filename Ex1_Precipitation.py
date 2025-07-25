@@ -411,7 +411,7 @@ plt.xticks(range(len(results)), ['med', 'med_c', 'RN', 'RN_c', 'DI',
 plt.ylim((0, 16))
 plt.ylabel('rainfall in F (mm)', fontsize=13)
 
-plt.savefig('../output/Ex1_compare methods.png', dpi=300)
+plt.savefig('Ex1_compare_methods.png', dpi=300)
 # -
 
 # + tags=["empty-cell"]
@@ -558,6 +558,6 @@ cb = plt.colorbar(pmap)
 cb.set_label('precipitación (mm)', rotation=90, fontsize=12)
 # puntos con las estaciones
 plt.scatter(data1_.X, data1_.Y, c='k', s=data1_.p**3/30)
-plt.savefig('../output/Ex1_precipitation map.png', dpi=300)
-print("Precipitation map saved as '../output/Ex1_precipitation map.png'")
+plt.savefig('Ex1_precipitation_map.png', dpi=300)
+print("Precipitation map saved as 'Ex1_precipitation_map.png'")
 # -
