@@ -1,5 +1,5 @@
 # Simplified Makefile for jupytext conversions - multiple files
-SOURCE_FILES = basics_00.py
+SOURCE_FILES = basics_00.py basics_01.py
 
 # Default target - runs when you just type 'make'
 .DEFAULT_GOAL := all
@@ -8,6 +8,10 @@ SOURCE_FILES = basics_00.py
 ready/images:
 	mkdir -p ready
 	cp -r image ready/
+
+# Extract MDB boundaries zip file
+MDB_boundaries:
+	unzip -o MDB_boundaries.zip
 
 # Convert single file to exercise notebook (remove solutions)
 exercise-%: ready/images
@@ -27,6 +31,15 @@ solution-%: ready/images
 		$(basename $*)_temp.ipynb
 	rm -f $(basename $*)_temp.ipynb
 
+# Special dependency for basics_01.py solution (requires MDB extraction)
+solution-basics_01.py: ready/images MDB_boundaries
+	jupytext --to ipynb -o basics_01_temp.ipynb basics_01.py
+	jupyter nbconvert --to notebook --output=ready/basics_01_solution.ipynb --execute \
+		--TagRemovePreprocessor.enabled=True \
+		--TagRemovePreprocessor.remove_cell_tags='["empty-cell"]' \
+		basics_01_temp.ipynb
+	rm -f basics_01_temp.ipynb
+
 # Generate exercise versions for all files
 exercise: $(addprefix exercise-,$(SOURCE_FILES))
 
@@ -41,4 +54,4 @@ clean:
 	rm -f *_temp.ipynb *_solution.ipynb
 	rm -rf ready
 
-.PHONY: exercise solution all clean ready/images
+.PHONY: exercise solution all clean ready/images MDB_boundaries
