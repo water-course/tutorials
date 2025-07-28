@@ -1,7 +1,12 @@
 # Exercises precipitation
 # =====
+# ## Tutorial: Interpolate missing values
 #
-# Exercise 1 - Interpolate missing values
+# ---
+#
+# Note: I have used the material by [**Jesús Casado Rodríguez**](https://github.com/casadoj) for this tutorial. If you ever had the time, please check out his [repository](https://github.com/casadoj/Clases.git) for more material.
+#
+# ---
 #
 # The figure shows the location of 11 precipitation gauges in a research
 # watershed. Measurements are missing at gauge F for a rain storm. Use
