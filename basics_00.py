@@ -1,4 +1,4 @@
-# Tutorial: Introduction to Python for Scientific Analysis
+# Exercises: Introduction to Python for Scientific Analysis
 # =====
 #
 # This exercise introduces some core Python programming concepts:
