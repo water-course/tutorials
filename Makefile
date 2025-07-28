@@ -1,12 +1,16 @@
 # Simplified Makefile for jupytext conversions - multiple files
-SOURCE_FILES = Ex1_Precipitation.py
+SOURCE_FILES = basics_00.py
 
 # Default target - runs when you just type 'make'
 .DEFAULT_GOAL := all
 
-# Convert single file to exercise notebook (remove solutions)
-exercise-%:
+# Copy image directory to ready directory
+ready/images:
 	mkdir -p ready
+	cp -r image ready/
+
+# Convert single file to exercise notebook (remove solutions)
+exercise-%: ready/images
 	jupytext --to ipynb -o $(basename $*)_temp.ipynb $*
 	jupyter nbconvert --to notebook --output=ready/$(basename $*).ipynb \
 		--TagRemovePreprocessor.enabled=True \
@@ -15,8 +19,7 @@ exercise-%:
 	rm -f $(basename $*)_temp.ipynb
 
 # Convert single file to solution notebook (remove empty cells)
-solution-%:
-	mkdir -p ready
+solution-%: ready/images
 	jupytext --to ipynb -o $(basename $*)_temp.ipynb $*
 	jupyter nbconvert --to notebook --output=ready/$(basename $*)_solution.ipynb --execute \
 		--TagRemovePreprocessor.enabled=True \
@@ -36,5 +39,6 @@ all: exercise solution
 # Clean up all generated files
 clean:
 	rm -f *_temp.ipynb *_solution.ipynb
+	rm -rf ready
 
-.PHONY: exercise solution all clean
+.PHONY: exercise solution all clean ready/images

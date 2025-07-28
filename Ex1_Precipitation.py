@@ -8,7 +8,7 @@
 # the records from the other gauges (shown in the following table) to
 # fill the gap in the rainfall amount in gauge F.
 #
-# <img src="img/RainGages.png" alt="Mountain View" style="width:300px">
+# <img src="image/RainGauges.png" alt="Mountain View" style="width:300px">
 #
 # The file *RainfallData_Exercise_001.csv* contains the rainfall data.
 #
