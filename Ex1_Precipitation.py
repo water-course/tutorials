@@ -15,7 +15,8 @@
 #
 # <img src="image/RainGauges.png" alt="Mountain View" style="width:300px">
 #
-# The file *RainfallData_Exercise_001.csv* contains the rainfall data.
+# The file [RainfallData_Exercise_001.csv](https://data.gadopt.org/water-course/RainfallData_Exercise_001.csv)
+# contains the rainfall data. Download this file simply by right clicking on the link and selecting "Download Linked File As..." or equivalent.
 #
 # | Gauge | X      | Y       | Average Annual Precip. (mm) | Measured Storm Precip. (mm) |
 # |------|--------|---------|-----------------------------|-----------------------------|
