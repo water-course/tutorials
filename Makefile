@@ -1,5 +1,5 @@
 # Simplified Makefile for jupytext conversions - multiple files
-SOURCE_FILES = basics_00.py basics_01.py Ex1_Precipitation.py
+SOURCE_FILES = basics_02.py
 
 # Default target - runs when you just type 'make'
 .DEFAULT_GOAL := all
@@ -16,6 +16,13 @@ MDB_boundaries:
 		curl -L -o MDB_boundaries.zip https://data.gadopt.org/water-course/MDB_boundaries.zip; \
 	fi
 	unzip -o MDB_boundaries.zip
+
+# Download rain_day_2025.nc file
+CSR_GRACE_GRACE-FO_RL0603_Mascons_all-corrections.nc:
+	@if [ ! -f CSR_GRACE_GRACE-FO_RL0603_Mascons_all-corrections.nc ]; then \
+		echo "Downloading CSR_GRACE_GRACE-FO_RL0603_Mascons_all-corrections.nc..."; \
+		curl -L -o CSR_GRACE_GRACE-FO_RL0603_Mascons_all-corrections.nc https://data.gadopt.org/water-course/CSR_GRACE_GRACE-FO_RL0603_Mascons_all-corrections.nc; \
+	fi
 
 # Download rain_day_2025.nc file
 rain_day_2025.nc:
@@ -57,6 +64,14 @@ solution-basics_01.py: ready/images MDB_boundaries rain_day_2025.nc
 		--TagRemovePreprocessor.remove_cell_tags='["empty-cell"]' \
 		basics_01_temp.ipynb
 	rm -f basics_01_temp.ipynb
+
+solution-basics_02.py: ready/images CSR_GRACE_GRACE-FO_RL0603_Mascons_all-corrections.nc
+	jupytext --to ipynb -o basics_02_temp.ipynb basics_02.py
+	jupyter nbconvert --to notebook --output=ready/basics_01_solution.ipynb --execute \
+		--TagRemovePreprocessor.enabled=True \
+		--TagRemovePreprocessor.remove_cell_tags='["empty-cell"]' \
+		basics_02_temp.ipynb
+	rm -f basics_02_temp.ipynb
 
 # Special dependency for Ex1_Precipitation.py solution (requires rainfall data)
 solution-Ex1_Precipitation.py: ready/images RainfallData_Exercise_001.csv
