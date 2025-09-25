@@ -1,5 +1,5 @@
 # Simplified Makefile for jupytext conversions - multiple files
-SOURCE_FILES = basics_02.py
+SOURCE_FILES = basics_00.py basics_01.py basics_02.py Ex1_Precipitation.py
 
 # Default target - runs when you just type 'make'
 .DEFAULT_GOAL := all
