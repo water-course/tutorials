@@ -67,7 +67,7 @@ solution-basics_01.py: ready/images MDB_boundaries rain_day_2025.nc
 
 solution-basics_02.py: ready/images CSR_GRACE_GRACE-FO_RL0603_Mascons_all-corrections.nc
 	jupytext --to ipynb -o basics_02_temp.ipynb basics_02.py
-	jupyter nbconvert --to notebook --output=ready/basics_01_solution.ipynb --execute \
+	jupyter nbconvert --to notebook --output=ready/basics_02_solution.ipynb --execute \
 		--TagRemovePreprocessor.enabled=True \
 		--TagRemovePreprocessor.remove_cell_tags='["empty-cell"]' \
 		basics_02_temp.ipynb
